@@ -1,8 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
 import MainPage from "@/components/MainPage";
-import PacientAll from "@/components/Pacient/PacientAll";
-import Pacient from "@/components/Pacient/Pacient";
+import PatientAll from "@/components/Patient/PatientAll";
+import Patient from "@/components/Patient/Patient";
 import RecordAll from "@/components/Record/RecordAll";
 import Record from "@/components/Record/Record";
 import Department from "@/components/Department/Department";
@@ -19,17 +19,17 @@ const router = new Router({
         {
             path: "",
             name: "MainPage",
-            component : MainPage
+            component: MainPage
         },
         {
-            path: "/pacients",
-            name: "PacientAll",
-            component: PacientAll,
+            path: "/patients",
+            name: "PatientAll",
+            component: PatientAll,
         },
         {
-            path: "/pacients/:id",
-            name: "Pacient Details",
-            component: Pacient,
+            path: "/patients/:id",
+            name: "Patient Details",
+            component: Patient,
         },
         {
             path: "/records",
