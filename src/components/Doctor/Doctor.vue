@@ -16,7 +16,7 @@
 
         <fieldset class="form-group">
           <label class="font-weight-bold">ID</label>
-          <input v-model="id" class="form-control font-italic" type="text"/>
+          <input v-model="id" class="form-control font-italic" type="number"/>
         </fieldset>
         <fieldset class="form-group">
           <label class="font-weight-bold">Имя</label>

@@ -27,15 +27,15 @@
         </fieldset>
         <fieldset class="form-group">
           <label class="font-weight-bold">Дата рождения</label>
-          <input type="text" class="form-control font-italic" v-model="dateOfBirth" />
+          <input type="date" class="form-control font-italic" v-model="dateOfBirth" />
         </fieldset>
         <fieldset class="form-group">
           <label class="font-weight-bold">Серия паспорта</label>
-          <input type="text" class="form-control font-italic" v-model="passportSeries" />
+          <input type="number" class="form-control font-italic" v-model="passportSeries" />
         </fieldset>
         <fieldset class="form-group">
           <label class="font-weight-bold">Номер паспорта</label>
-          <input type="text" class="form-control font-italic" v-model="passportNumber" />
+          <input type="number" class="form-control font-italic" v-model="passportNumber" />
         </fieldset>
         <fieldset class="form-group">
           <label class="font-weight-bold">Место работы</label>
@@ -43,7 +43,7 @@
         </fieldset>
         <fieldset class="form-group">
           <label class="font-weight-bold">Номер страхования</label>
-          <input type="text" class="form-control font-italic" v-model="insuranceNumber" />
+          <input type="number" class="form-control font-italic" v-model="insuranceNumber" />
         </fieldset>
         <fieldset class="form-group">
           <label class="font-weight-bold">Тип страхования</label>
