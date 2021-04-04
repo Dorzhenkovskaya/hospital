@@ -4,26 +4,26 @@ const URL = "http://localhost:8080/records";
 
 class RecordSer {
 
-  getAllRecords() {
-    return axios.get(`${URL}`);
-  }
+    getAllRecords() {
+        return axios.get(`${URL}`);
+    }
 
-  getRecords(id){
-    return axios.get(`${URL}/${id}`)
-  }
+    getRecords(id) {
+        return axios.get(`${URL}/${id}`)
+    }
 
 
-  deleteRecordById(id){
-    return axios.delete(`${URL}/${id}`)
-  }
+    deleteRecordById(id) {
+        return axios.delete(`${URL}/${id}`)
+    }
 
-  updateRecord(id, record){
-    return axios.put(`${URL}/${id}`, record);
-  }
+    updateRecord(id, record) {
+        return axios.put(`${URL}/${id}`, record);
+    }
 
-  createRecord(record){
-    return axios.post(`${URL}`, record)
-  }
+    createRecord(record) {
+        return axios.post(`${URL}`, record)
+    }
 
 }
 

@@ -20,23 +20,23 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="pacient in pacients" v-bind:key="pacient.id">
-              <td>{{pacient.id}}</td>
-              <td>{{pacient.name}}</td>
-              <td>{{pacient.surname}}</td>
-              <td>{{pacient.patronymic}}</td>
-              <td>{{pacient.dateOfBirth}}</td>
-              <td>{{pacient.passportSeries}}</td>
-              <td>{{pacient.passportNumber}}</td>
-              <td>{{pacient.workPlace}}</td>
-              <td>{{pacient.insuranceNumber}}</td>
-              <td>{{pacient.insuranceType}}</td>
+            <tr v-for="patient in patients" v-bind:key="patient.id">
+              <td>{{patient.id}}</td>
+              <td>{{patient.name}}</td>
+              <td>{{patient.surname}}</td>
+              <td>{{patient.patronymic}}</td>
+              <td>{{patient.dateOfBirth}}</td>
+              <td>{{patient.passportSeries}}</td>
+              <td>{{patient.passportNumber}}</td>
+              <td>{{patient.workPlace}}</td>
+              <td>{{patient.insuranceNumber}}</td>
+              <td>{{patient.insuranceType}}</td>
             <td>
-              <button class="btn btn-outline-dark" v-on:click="updatePacientById(pacient.id)">Изменить</button>
+              <button class="btn btn-outline-dark" v-on:click="updatePatientById(patient.id)">Изменить</button>
             </td>
            
             <td>
-              <button class="btn btn-outline-dark" v-on:click="deletePacientById(pacient.id)">Удалить</button>
+              <button class="btn btn-outline-dark" v-on:click="deletePatientById(patient.id)">Удалить</button>
             </td>
 
             </tr>
@@ -44,7 +44,7 @@
         </table>
 
           <div class="row">
-            <button class="btn btn-success btn-lg btn-block btn" v-on:click="addPacientClicked()">Добавить нового пациента</button>
+            <button class="btn btn-success btn-lg btn-block btn" v-on:click="addPatientClicked()">Добавить нового пациента</button>
           </div>
         <br>
           <div class="row">
@@ -57,13 +57,13 @@
 
 <script>
 
-import PacientSer from "@/components/Pacient/PacientSer";
+import PatientSer from "@/components/Patient/PatientSer";
 
 export default {
-  name: "PacientAll",
+  name: "PatientAll",
   data() {
       return {
-          pacients:[],
+          patients:[],
           message: null,
       }
   },
@@ -71,28 +71,28 @@ export default {
   methods:{
 
       refreshCourses(){
-          PacientSer.getAllPacients().
+          PatientSer.getAllPatients().
           then(response =>{
             console.log(response.data)
-            this.pacients = response.data
+            this.patients = response.data
           });
       },
 
-      deletePacientById(id){
-          PacientSer.deletePacientById(id).
+      deletePatientById(id){
+          PatientSer.deletePatientById(id).
           then(response =>{
               console.log(response.data)
-              this.message = `Deleting pacient by id ${id} has been successful`
+              this.message = `Deleting patient by id ${id} has been successful`
               this.refreshCourses();
               })
           },
 
-        updatePacientById(id){
-            this.$router.push({name: 'Pacient Details', params: {id} })
+        updatePatientById(id){
+            this.$router.push({name: 'Patient Details', params: {id} })
         },
 
-        addPacientClicked() {
-            this.$router.push(`/pacients/-1`);
+        addPatientClicked() {
+            this.$router.push(`/patients/-1`);
         },
 
         goToMainPage(){

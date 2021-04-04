@@ -7,35 +7,36 @@
 
         <div v-if="errors.length">
           <div
-            class="alert alert-warning"
-            v-bind:key="index"
-            v-for="(error, index) in errors"
-          >{{error}}</div>
+              v-for="(error, index) in errors"
+              v-bind:key="index"
+              class="alert alert-warning"
+          >{{ error }}
+          </div>
         </div>
 
         <fieldset class="form-group">
           <label class="font-weight-bold">ID</label>
-          <input type="text" class="form-control font-italic" v-model="id" />
+          <input v-model="id" class="form-control font-italic" type="text"/>
         </fieldset>
         <fieldset class="form-group">
           <label class="font-weight-bold">Имя</label>
-          <input type="text" class="form-control font-italic" v-model="name" />
+          <input v-model="name" class="form-control font-italic" type="text"/>
         </fieldset>
         <fieldset class="form-group">
           <label class="font-weight-bold">Фамилия</label>
-          <input type="text" class="form-control font-italic" v-model="surname" />
+          <input v-model="surname" class="form-control font-italic" type="text"/>
         </fieldset>
         <fieldset class="form-group">
           <label class="font-weight-bold">Отчество</label>
-          <input type="text" class="form-control font-italic" v-model="patronymic" />
+          <input v-model="patronymic" class="form-control font-italic" type="text"/>
         </fieldset>
         <fieldset class="form-group">
           <label class="font-weight-bold">Специализация</label>
-          <input type="text" class="form-control font-italic" v-model="specialization" />
+          <input v-model="specialization" class="form-control font-italic" type="text"/>
         </fieldset>
         <fieldset class="form-group">
           <label class="font-weight-bold">Отделение</label>
-          <input type="text" class="form-control font-italic" v-model="department_id" />
+          <input v-model="department_id" class="form-control font-italic" type="text"/>
         </fieldset>
         <label class="font-weight-bold"></label>
         <button class="btn btn-success btn-lg btn-block btn" type="submit">Сохранить</button>
@@ -74,7 +75,7 @@ export default {
   },
 
   methods: {
-    goToLastPage(){
+    goToLastPage() {
       this.$router.push(`/doctors`)
     },
 
@@ -112,26 +113,25 @@ export default {
       if (this.errors.length === 0) {
         if (this.id === -1) {
           DoctorSer.createDoctor(
-            {
-              id : this.id,
-              name : this.name,
-              surname: this.surname,
-              patronymic : this.patronymic,
-              specialization : this.specialization,
-              department_id : this.department_id
-            }
-            ).then(() => {
-                this.$router.push("/doctors")
-            })
-        }
-        else {
+              {
+                id: this.id,
+                name: this.name,
+                surname: this.surname,
+                patronymic: this.patronymic,
+                specialization: this.specialization,
+                department_id: this.department_id
+              }
+          ).then(() => {
+            this.$router.push("/doctors")
+          })
+        } else {
           DoctorSer.updateDoctor(this.id, {
-            id : this.id,
-            name : this.name,
+            id: this.id,
+            name: this.name,
             surname: this.surname,
-            patronymic : this.patronymic,
-            specialization : this.specialization,
-            department_id : this.department_id
+            patronymic: this.patronymic,
+            specialization: this.specialization,
+            department_id: this.department_id
           }).then(() => {
             this.$router.push("/doctors");
           });

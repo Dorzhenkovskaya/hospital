@@ -7,27 +7,24 @@
 
         <div v-if="errors.length">
           <div
-            class="alert alert-warning"
-            v-bind:key="index"
-            v-for="(error, index) in errors"
-          >{{error}}</div>
+              class="alert alert-warning"
+              v-bind:key="index"
+              v-for="(error, index) in errors"
+          >{{ error }}
+          </div>
         </div>
-      
+
         <fieldset class="form-group">
           <label class="font-weight-bold">ID пациента</label>
-          <input type="text" class="form-control font-italic" v-model="pacient_id" />
+          <input type="text" class="form-control font-italic" v-model="patient_id"/>
         </fieldset>
         <fieldset class="form-group">
           <label class="font-weight-bold">Создание</label>
-          <input type="text" class="form-control font-italic" v-model="created_at" />
+          <input type="text" class="form-control font-italic" v-model="created_at"/>
         </fieldset>
         <fieldset class="form-group">
           <label class="font-weight-bold">Отделение</label>
-          <input type="text" class="form-control font-italic" v-model="deparment_id" />
-        </fieldset>
-        <fieldset class="form-group">
-          <label class="font-weight-bold">Пациент</label>
-          <input type="text" class="form-control font-italic" v-model="pacient_id1" />
+          <input type="text" class="form-control font-italic" v-model="department_id"/>
         </fieldset>
         <label class="font-weight-bold"></label>
         <button class="btn btn-success btn-lg btn-block btn" type="submit">Сохранить</button>
@@ -47,10 +44,9 @@ export default {
   data() {
 
     return {
-      pacient_id: "",
+      patient_id: "",
       created_at: "",
-      deparment_id: "",
-      pacient_id1: "",
+      department_id: "",
       errors: []
     };
 
@@ -63,54 +59,47 @@ export default {
   },
 
   methods: {
-    goToLastPage(){
+    goToLastPage() {
       this.$router.push(`/records`)
     },
 
     refreshRecordDetails() {
       RecordSer.getRecords(this.id).then(res => {
-        this.pacient_id = res.data.pacient_id;
+        this.patient_id = res.data.patient_id;
         this.created_at = res.data.created_at;
-        this.deparment_id = res.data.deparment_id;
-        this.pacient_id1 = res.data.pacient_id1;
+        this.department_id = res.data.department_id;
       });
     },
     validateAndSubmit(e) {
       e.preventDefault();
       this.errors = [];
-      if (!this.pacient_id) {
+      if (!this.patient_id) {
         this.errors.push("Неверные данные");
       }
       if (!this.created_at) {
         this.errors.push("Неверные данные");
       }
-      if (!this.deparment_id) {
-        this.errors.push("Неверные данные");
-      }
-      if (!this.pacient_id1) {
+      if (!this.department_id) {
         this.errors.push("Неверные данные");
       }
 
       if (this.errors.length === 0) {
         if (this.id === -1) {
-            RecordSer.createRecord(
-            {
-                pacient_id : this.pacient_id,
-                created_at : this.created_at,
-                deparment_id : this.deparment_id,
-                pacient_id1 : this.pacient_id1
-            }
-            ).then(() => {
-                this.$router.push("/records")
-            })
-        } 
-        else {
+          RecordSer.createRecord(
+              {
+                patient_id: this.patient_id,
+                created_at: this.created_at,
+                department_id: this.department_id
+              }
+          ).then(() => {
+            this.$router.push("/records")
+          })
+        } else {
           RecordSer.updateRecord(this.id, {
             id: this.id,
-            pacient_id : this.pacient_id,
-            created_at : this.created_at,
-            deparment_id : this.deparment_id,
-            pacient_id1 : this.pacient_id1
+            patient_id: this.patient_id,
+            created_at: this.created_at,
+            department_id: this.department_id
           }).then(() => {
             this.$router.push("/records");
           });

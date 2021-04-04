@@ -60,10 +60,10 @@
 
 <script>
 
-import PacientSer from "@/components/Pacient/PacientSer";
+import PatientSer from "@/components/Patient/PatientSer";
 
 export default {
-  name: "pacientDetails",
+  name: "patientDetails",
   data() {
 
     return {
@@ -89,11 +89,11 @@ export default {
 
   methods: {
     goToLastPage(){
-      this.$router.push(`/pacients`)
+      this.$router.push(`/patients`)
     },
 
-    refreshPacientDetails() {
-      PacientSer.getPacients(this.id).then(res => {
+    refreshPatientsDetails() {
+      PatientSer.getPatients(this.id).then(res => {
         this.name = res.data.name;
         this.surname = res.data.surname;
         this.patronymic = res.data.patronymic;
@@ -138,7 +138,7 @@ export default {
 
       if (this.errors.length === 0) {
         if (this.id === -1) {
-            PacientSer.createPacient(
+            PatientSer.createPatient(
             {
                 name : this.name,
                 surname : this.surname,
@@ -151,11 +151,11 @@ export default {
                 insuranceType : this.insuranceType
             }
             ).then(() => {
-                this.$router.push("/pacients")
+                this.$router.push("/patients")
             })
         } 
         else {
-          PacientSer.updatePacient(this.id, {
+          PatientSer.updatePatient(this.id, {
             id: this.id,
             name : this.name,
             surname : this.surname,
@@ -167,7 +167,7 @@ export default {
             insuranceNumber : this.insuranceNumber,
             insuranceType : this.insuranceType
           }).then(() => {
-            this.$router.push("/pacients");
+            this.$router.push("/patients");
           });
         }
       }
@@ -175,7 +175,7 @@ export default {
   }
   ,
   created() {
-    this.refreshPacientDetails();
+    this.refreshPatientsDetails();
   }
 };
 </script>
