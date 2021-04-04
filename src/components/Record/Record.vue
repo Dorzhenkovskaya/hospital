@@ -16,15 +16,15 @@
 
         <fieldset class="form-group">
           <label class="font-weight-bold">ID пациента</label>
-          <input type="text" class="form-control font-italic" v-model="patient_id"/>
+          <input type="number" class="form-control font-italic" v-model="patient_id"/>
         </fieldset>
         <fieldset class="form-group">
           <label class="font-weight-bold">Создание</label>
-          <input type="text" class="form-control font-italic" v-model="created_at"/>
+          <input type="date" class="form-control font-italic" v-model="created_at"/>
         </fieldset>
         <fieldset class="form-group">
           <label class="font-weight-bold">Отделение</label>
-          <input type="text" class="form-control font-italic" v-model="department_id"/>
+          <input type="number" class="form-control font-italic" v-model="department_id"/>
         </fieldset>
         <label class="font-weight-bold"></label>
         <button class="btn btn-success btn-lg btn-block btn" type="submit">Сохранить</button>
