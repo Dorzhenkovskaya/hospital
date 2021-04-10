@@ -14,10 +14,6 @@
         </div>
 
         <fieldset class="form-group">
-          <label class="font-weight-bold">ID</label>
-          <input type="number" class="form-control font-italic" v-model="id" />
-        </fieldset>
-        <fieldset class="form-group">
           <label class="font-weight-bold">Название</label>
           <input type="text" class="form-control font-italic" v-model="name" />
         </fieldset>
@@ -39,7 +35,6 @@ export default {
   data() {
 
     return {
-      id: "",
       name: "",
       errors: []
     };
@@ -67,9 +62,9 @@ export default {
     validateAndSubmit(e) {
       e.preventDefault();
       this.errors = [];
-      if (!this.id) {
-        this.errors.push("Неверные данные");
-      }
+      // if (!this.id) {
+      //   this.errors.push("Неверные данные");
+      // }
       if (!this.name) {
         this.errors.push("Неверные данные");
       }
@@ -86,7 +81,7 @@ export default {
         }
         else {
           DepartmentSer.updateDepartment(this.id, {
-            id: this.id,
+            // id: this.id,
             name : this.name
           }).then(() => {
             this.$router.push("/departments");

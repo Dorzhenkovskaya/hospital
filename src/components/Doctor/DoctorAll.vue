@@ -5,7 +5,7 @@
       <table class="table table-hover">
         <thead>
         <tr>
-          <th scope="col">ID</th>
+<!--          <th scope="col">ID</th>-->
           <th scope="col">Имя</th>
           <th scope="col">Фамилия</th>
           <th scope="col">Отчество</th>
@@ -17,7 +17,7 @@
         </thead>
         <tbody>
         <tr v-for="doctor in doctors" v-bind:key="doctor.id">
-          <td>{{ doctor.id }}</td>
+<!--          <td>{{ doctor.id }}</td>-->
           <td>{{ doctor.name }}</td>
           <td>{{ doctor.surname }}</td>
           <td>{{ doctor.patronymic }}</td>

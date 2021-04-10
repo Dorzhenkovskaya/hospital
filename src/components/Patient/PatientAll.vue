@@ -5,7 +5,7 @@
         <table class="table table-hover">
         <thead>
             <tr>
-              <th scope="col">Id</th>
+<!--              <th scope="col">Id</th>-->
               <th scope="col">Имя</th>
               <th scope="col">Фамилия</th>
               <th scope="col">Отчество</th>
@@ -21,11 +21,11 @@
         </thead>
         <tbody>
             <tr v-for="patient in patients" v-bind:key="patient.id">
-              <td>{{patient.id}}</td>
-              <td>{{patient.name}}</td>
+<!--              <td>{{patient.id}}</td>-->
+              <td>{{patient.patient_name}}</td>
               <td>{{patient.surname}}</td>
               <td>{{patient.patronymic}}</td>
-              <td>{{patient.dateOfBirth}}</td>
+              <td>{{formatDate(patient.dateOfBirth)}}</td>
               <td>{{patient.passportSeries}}</td>
               <td>{{patient.passportNumber}}</td>
               <td>{{patient.workPlace}}</td>
@@ -69,7 +69,7 @@ export default {
   },
   
   methods:{
-
+  formatDate,
       refreshCourses(){
           PatientSer.getAllPatients().
           then(response =>{
@@ -107,6 +107,19 @@ export default {
   }
 
 };
+export function formatDate(input_date) {
+  console.log(input_date);
+  let date = new Date(input_date[0],input_date[1],input_date[2])
+  console.log(date)
+  let DD = date.getDate();
+  if (DD < 10)
+    DD = '0' + DD;
+  let MM = date.getMonth() + 1;
+  if (MM < 10)
+    MM = '0' + MM;
+  let YYYY = date.getFullYear();
+  return `${YYYY}-${MM}-${DD}`;
+}
 
 </script>
 

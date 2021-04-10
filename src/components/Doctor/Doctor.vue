@@ -14,10 +14,10 @@
           </div>
         </div>
 
-        <fieldset class="form-group">
-          <label class="font-weight-bold">ID</label>
-          <input v-model="id" class="form-control font-italic" type="number"/>
-        </fieldset>
+<!--        <fieldset class="form-group">-->
+<!--          <label class="font-weight-bold">ID</label>-->
+<!--          <input v-model="id" class="form-control font-italic" type="number"/>-->
+<!--        </fieldset>-->
         <fieldset class="form-group">
           <label class="font-weight-bold">Имя</label>
           <input v-model="name" class="form-control font-italic" type="text"/>
@@ -56,7 +56,6 @@ export default {
   data() {
 
     return {
-      id: "",
       name: "",
       surname: "",
       patronymic: "",
@@ -92,9 +91,9 @@ export default {
     validateAndSubmit(e) {
       e.preventDefault();
       this.errors = [];
-      if (!this.id) {
-        this.errors.push("Неверные данные");
-      }
+      // if (!this.id) {
+      //   this.errors.push("Неверные данные");
+      // }
       if (!this.name) {
         this.errors.push("Неверные данные");
       }
