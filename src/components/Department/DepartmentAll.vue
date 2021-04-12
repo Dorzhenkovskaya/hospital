@@ -5,7 +5,6 @@
         <table class="table table-hover">
         <thead>
             <tr>
-              <th scope="col">ID</th>
               <th scope="col">Название</th>
               <th scope="col">Изменить</th>
               <th scope="col">Удалить</th>
@@ -13,7 +12,6 @@
         </thead>
         <tbody>
             <tr v-for="department in departments" v-bind:key="department.id">
-              <td>{{department.id}}</td>
               <td>{{department.name}}</td>
             <td>
               <button class="btn btn-outline-dark" v-on:click="updateDepartmentById(department.id)">Изменить</button>

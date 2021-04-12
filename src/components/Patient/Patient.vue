@@ -15,7 +15,7 @@
       
         <fieldset class="form-group">
           <label class="font-weight-bold">Имя</label>
-          <input type="text" class="form-control font-italic" v-model="name" />
+          <input type="text" class="form-control font-italic" v-model="patient_name" />
         </fieldset>
         <fieldset class="form-group">
           <label class="font-weight-bold">Фамилия</label>
@@ -67,7 +67,7 @@ export default {
   data() {
 
     return {
-      name: "",
+      patient_name: "",
       surname: "",
       patronymic: "",
       dateOfBirth: "",
@@ -88,16 +88,17 @@ export default {
   },
 
   methods: {
+    formatDate,
     goToLastPage(){
       this.$router.push(`/patients`)
     },
 
     refreshPatientsDetails() {
       PatientSer.getPatients(this.id).then(res => {
-        this.name = res.data.name;
+        this.patient_name = res.data.patient_name;
         this.surname = res.data.surname;
         this.patronymic = res.data.patronymic;
-        this.dateOfBirth = res.data.dateOfBirth;
+        this.dateOfBirth = formatDate(res.data.dateOfBirth);
         this.passportSeries = res.data.passportSeries;
         this.passportNumber = res.data.passportNumber;
         this.workPlace = res.data.workPlace;
@@ -108,7 +109,7 @@ export default {
     validateAndSubmit(e) {
       e.preventDefault();
       this.errors = [];
-      if (!this.name) {
+      if (!this.patient_name) {
         this.errors.push("Неверные данные");
       }
       if (!this.surname) {
@@ -140,7 +141,7 @@ export default {
         if (this.id === -1) {
             PatientSer.createPatient(
             {
-                name : this.name,
+              patient_name : this.patient_name,
                 surname : this.surname,
                 patronymic : this.patronymic,
                 dateOfBirth : this.dateOfBirth,
@@ -157,7 +158,7 @@ export default {
         else {
           PatientSer.updatePatient(this.id, {
             id: this.id,
-            name : this.name,
+            patient_name : this.patient_name,
             surname : this.surname,
             patronymic : this.patronymic,
             dateOfBirth : this.dateOfBirth,
@@ -178,6 +179,19 @@ export default {
     this.refreshPatientsDetails();
   }
 };
+export function formatDate(input_date) {
+  console.log(input_date);
+  let date = new Date(input_date[0],input_date[1],input_date[2])
+  console.log(date)
+  let DD = date.getDate();
+  if (DD < 10)
+    DD = '0' + DD;
+  let MM = date.getMonth() + 1;
+  if (MM < 10)
+    MM = '0' + MM;
+  let YYYY = date.getFullYear();
+  return `${YYYY}-${MM}-${DD}`;
+}
 </script>
 
 <style>
