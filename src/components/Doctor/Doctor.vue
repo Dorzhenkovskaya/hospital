@@ -35,8 +35,12 @@
           <input v-model="specialization" class="form-control font-italic" type="text"/>
         </fieldset>
         <fieldset class="form-group">
-          <label class="font-weight-bold">Отделение</label>
-          <input v-model="department_id" class="form-control font-italic" type="text"/>
+          <label class="font-weight-bold">Отделение
+            <select v-model="department_id" class="custom-select" required>
+              <option v-for="department in departments" :value="department.id">{{ department.name }}</option>
+            </select>
+          </label>
+<!--          <input v-model="department_id" class="form-control font-italic" type="text"/>-->
         </fieldset>
         <label class="font-weight-bold"></label>
         <button class="btn btn-success btn-lg btn-block btn" type="submit">Сохранить</button>
