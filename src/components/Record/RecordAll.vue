@@ -5,19 +5,18 @@
       <table class="table table-hover">
         <thead>
         <tr>
-          <th scope="col">ID пациента</th>
-          <th scope="col">Создание</th>
-          <th scope="col">Отделение</th>
           <th scope="col">Пациент</th>
+          <th scope="col">Создание</th>
+          <th scope="col">Отделенлие</th>
           <th scope="col">Изменить</th>
           <th scope="col">Удалить</th>
         </tr>
         </thead>
         <tbody>
         <tr v-for="record in records" v-bind:key="record.id">
-          <td>{{ record.patient_id }}</td>
-          <td>{{ record.created_at }}</td>
-          <td>{{ record.department_id }}</td>
+          <td>{{ record.patient.surname + ' ' +record.patient.name }}</td>
+          <td>{{ formatDate(record.created_at) }}</td>
+          <td>{{ record.department.name }}</td>
           <td>
             <button class="btn btn-outline-dark" v-on:click="updateRecordById(record.id)">Изменить</button>
           </td>
@@ -58,7 +57,7 @@ export default {
   },
 
   methods: {
-
+  formatDate,
     refreshCourses() {
       RecordSer.getAllRecords().then(response => {
         console.log(response.data)
@@ -94,7 +93,19 @@ export default {
   }
 
 };
-
+export function formatDate(input_date) {
+  console.log(input_date);
+  let date = new Date(input_date[0],input_date[1],input_date[2])
+  console.log(date)
+  let DD = date.getDate();
+  if (DD < 10)
+    DD = '0' + DD;
+  let MM = date.getMonth() + 1;
+  if (MM < 10)
+    MM = '0' + MM;
+  let YYYY = date.getFullYear();
+  return `${YYYY}-${MM}-${DD}`;
+}
 </script>
 
 <style>
