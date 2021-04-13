@@ -22,7 +22,7 @@
           <td>{{ doctor.surname }}</td>
           <td>{{ doctor.patronymic }}</td>
           <td>{{ doctor.specialization }}</td>
-          <td>{{ doctor.department_id }}</td>
+          <td>{{ doctor.department.name }}</td>
           <td>
             <button class="btn btn-outline-dark" v-on:click="updateDoctorById(doctor.id)">Изменить</button>
           </td>

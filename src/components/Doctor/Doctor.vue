@@ -35,8 +35,12 @@
           <input v-model="specialization" class="form-control font-italic" type="text"/>
         </fieldset>
         <fieldset class="form-group">
-          <label class="font-weight-bold">Отделение</label>
-          <input v-model="department_id" class="form-control font-italic" type="text"/>
+          <label class="font-weight-bold">Отделение
+            <select v-model="department" class="custom-select" required>
+              <option v-for="department in departments" :value="department" :key="department.name">{{ department.name }}</option>
+            </select>
+          </label>
+          <!--          <input v-model="department_id" class="form-control font-italic" type="text"/>-->
         </fieldset>
         <label class="font-weight-bold"></label>
         <button class="btn btn-success btn-lg btn-block btn" type="submit">Сохранить</button>
@@ -50,17 +54,19 @@
 <script>
 
 import DoctorSer from "@/components/Doctor/DoctorSer";
+import DepartmentSer from "../Department/DepartmentSer";
 
 export default {
   name: "doctorDetails",
   data() {
 
     return {
+      departments:null,
       name: "",
       surname: "",
       patronymic: "",
       specialization: "",
-      department_id: "",
+      department: "",
       errors: []
     };
 
@@ -85,7 +91,7 @@ export default {
         this.surname = res.data.surname;
         this.patronymic = res.data.patronymic;
         this.specialization = res.data.specialization;
-        this.department_id = res.data.department_id;
+        this.department = res.data.department;
       });
     },
     validateAndSubmit(e) {
@@ -106,7 +112,7 @@ export default {
       if (!this.specialization) {
         this.errors.push("Неверные данные");
       }
-      if (!this.department_id) {
+      if (!this.department) {
         this.errors.push("Неверные данные");
       }
       if (this.errors.length === 0) {
@@ -118,7 +124,7 @@ export default {
                 surname: this.surname,
                 patronymic: this.patronymic,
                 specialization: this.specialization,
-                department_id: this.department_id
+                department: this.department
               }
           ).then(() => {
             this.$router.push("/doctors")
@@ -130,7 +136,7 @@ export default {
             surname: this.surname,
             patronymic: this.patronymic,
             specialization: this.specialization,
-            department_id: this.department_id
+            department: this.department
           }).then(() => {
             this.$router.push("/doctors");
           });
@@ -141,6 +147,11 @@ export default {
   ,
   created() {
     this.refreshDoctorDetails();
+    DepartmentSer.getAllDepartments().
+    then(response =>{
+      console.log(response.data)
+      this.departments = response.data
+    });
   }
 };
 </script>
